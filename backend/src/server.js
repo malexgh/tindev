@@ -11,7 +11,8 @@ io.on('connection', socket => {
     connectedUsers[user] = socket.id;
     console.log(connectedUsers);
 });
-mongoose.connect('mongodb+srv://omnistack:omnistack@cluster0-ze3sn.mongodb.net/omnistack?retryWrites=true&w=majority', { useNewUrlParser: true });
+const mongoDBKey = process.env.MONGODB_KEY;
+mongoose.connect('mongodb+srv://'+mongoDBKey+'?retryWrites=true&w=majority', { useNewUrlParser: true });
 app.use((req, res, next) => {
     req.io = io;
     req.connectedUsers = connectedUsers;
