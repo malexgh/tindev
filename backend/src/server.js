@@ -12,7 +12,7 @@ io.on('connection', socket => {
     console.log(connectedUsers);
 });
 const mongoDBKey = process.env.MONGODB_KEY;
-mongoose.connect('mongodb+srv://'+mongoDBKey+'?retryWrites=true&w=majority', { useNewUrlParser: true });
+mongoose.connect(`mongodb+srv://${mongoDBKey}?retryWrites=true&w=majority`, { useNewUrlParser: true });
 app.use((req, res, next) => {
     req.io = io;
     req.connectedUsers = connectedUsers;
