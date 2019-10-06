@@ -1,6 +1,6 @@
 # TinDev
 
-App inspired on Tinder
+App inspired on Tinder. Developed on the OmniStack Week 8 by [RocketSeat](https://rocketseat.com.br/)
 
 ## Built With
 
