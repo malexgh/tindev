@@ -6,13 +6,18 @@ const app = express();
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const connectedUsers = {};
+
 io.on('connection', socket => {
     const { user } = socket.handshake.query;
     connectedUsers[user] = socket.id;
     console.log(connectedUsers);
 });
-const mongoDBKey = process.env.MONGODB_KEY;
-mongoose.connect(`mongodb+srv://${mongoDBKey}?retryWrites=true&w=majority`, { useNewUrlParser: true });
+
+mongoose.connect(process.env.MONGODB_KEY, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
 app.use((req, res, next) => {
     req.io = io;
     req.connectedUsers = connectedUsers;
